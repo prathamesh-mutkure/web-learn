@@ -1,0 +1,81 @@
+
+/******************** Boxes ***************************/
+
+.box1 {
+    width: 150px;
+    height: 150px;
+    background-color: red;
+}
+
+.box2 {
+    width: 150px;
+    height: 150px;
+    background-color: blue;
+}
+
+.box3 {
+    width: 150px;
+    height: 150px;
+    background-color: yellow;
+}
+
+/******************** Box Model ***************************/
+
+.top-container {
+    border: solid 10px;
+    padding: 20px;
+    background-color: cyan;
+    margin: 0px;
+}
+
+.middle-container {
+    border: solid 20px;
+    background-color: red;
+    margin-left: 260px;
+}
+
+.bottom-container {
+    border: solid 10px;
+    background-color: yellow;
+    margin-left: 500px;
+}
+
+/******************** Relative Position ***************************/
+
+.red {
+    position: relative;
+    display: inline-block;
+    left: 300px;
+}
+
+.blue {
+    position: relative;
+    display: inline-block;
+    right: 150px;
+}
+
+.yellow {
+    position: relative;
+    display: inline-block;
+    right: 150px;
+}
+
+/******************** Absolute Position ***************************/
+
+.abs1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.abs2 {
+    position: absolute;
+    top: 150px;
+    left: 150px;
+}
+
+.abs3 {
+    position: absolute;
+    top: 300px;
+    left: 300px;
+}
