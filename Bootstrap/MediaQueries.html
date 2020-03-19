@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Queries</title>
+
+    <style>
+        h1 {
+            font-size: 3.5rem;
+            color: green;
+        }
+
+        @media (max-width: 720px) {
+            h1 {
+                font-size: 2.5rem;
+                color: blue;
+            }
+        }
+
+        h2 {
+            font-weight: bold;
+        }
+
+        @media (min-width: 700px) and (max-width: 1000px) { 
+            h2 {
+                font-weight: normal;
+                font-style: italic;
+            }
+        }
+
+
+        @media print {
+            h2 {
+                visibility: hidden;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Hello World!</h1>
+    <h2>Bye World!</h2>
+
+</body>
+
+</html>
