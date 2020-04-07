@@ -20,10 +20,11 @@
 }
 
 .footer {
-  position: relative;
-  text-align: center;
+  position: fixed;
+  left: 0;
   bottom: 0;
   width: 100%;
+  text-align: center;
   height: 60px;
   background-color: #1abc9c;
 }
