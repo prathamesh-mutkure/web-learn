@@ -7,7 +7,7 @@ for (var i = 0; i < buttons.length; i++) {
   });
 }
 
-document.addEventListener("keydown", function (event) {
+$(document).on("keydown", function (event) {
   playAudio(event.key);
   animateButton(event.key);
 });
