@@ -1,6 +1,8 @@
 import fs from "fs";
 import path from "path";
 
+import Link from "next/link";
+
 // STATIC
 // Static HTML files, no data
 
@@ -11,6 +13,12 @@ import path from "path";
 // The page is generated during build time
 
 // ISR (Incremental Site Regeneration)
+// Static HTML Files + data (regenerated)
+// The files are regenerated after X seconds
+// After the request
+// The page is regenerated after a request only if it's older than X seconds
+// "revalidate" property is returned through getStaticProps
+// The regeneration takes place on server side
 
 // SSR (Server Side Rendering)
 
@@ -25,7 +33,9 @@ const Home = (props) => {
         {products.map((product) => {
           return (
             <li key={product.id}>
-              <h3>{product.title}</h3>
+              <Link href={`/products/${product.id}`}>
+                <h3>{product.title}</h3>
+              </Link>
               <p>{product.description}</p>
             </li>
           );
@@ -35,15 +45,30 @@ const Home = (props) => {
   );
 };
 
-export const getStaticProps = async () => {
+export const getStaticProps = async (context) => {
+  console.log("regenerating...");
+  // console.log(context);
   const filePath = path.join(process.cwd(), "data", "dummy-backend.json");
   const jsonData = fs.readFileSync(filePath);
   const data = JSON.parse(jsonData);
+
+  if (!data) {
+    return {
+      notfound: true,
+    };
+  }
+
+  if (data.products.lenght == 0) {
+    return {
+      redirect: {},
+    };
+  }
 
   return {
     props: {
       products: data.products,
     },
+    revalidate: 10,
   };
 };
 
