@@ -1,4 +1,4 @@
-const DUMMY_EVENTS = [
+export const DUMMY_EVENTS = [
   {
     id: "e1",
     title: "Programming for everyone",
