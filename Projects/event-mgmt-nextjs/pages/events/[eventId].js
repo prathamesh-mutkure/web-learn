@@ -6,6 +6,7 @@ import EventLogistics from "../../components/event-detail/event-logistics";
 import EventContent from "../../components/event-detail/event-content";
 import LogisticsItem from "../../components/event-detail/logistics-item";
 import { getEventById, getFeaturedEventIds } from "../../helpers/api_helpers";
+import Comments from "../../components/input/comments";
 
 const EventPage = (props) => {
   const { event } = props;
@@ -34,6 +35,8 @@ const EventPage = (props) => {
       <EventContent>
         <p>{description}</p>
       </EventContent>
+
+      <Comments eventId={event.id} />
     </Fragment>
   );
 };
