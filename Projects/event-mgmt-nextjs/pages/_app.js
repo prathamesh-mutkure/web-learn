@@ -1,6 +1,7 @@
 import Layout from "../components/layout/layout";
 import "../styles/globals.css";
 import Head from "next/head";
+import { NotificationContextProvider } from "../store/notification-context";
 
 // _app.js
 // This components serves as the route component of our app
@@ -14,13 +15,15 @@ import Head from "next/head";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <Layout>
-      <Head>
-        <title>Next.js Events</title>
-        <meta name="author" content="Prathamesh Mutkure" />
-      </Head>
-      <Component {...pageProps} />
-    </Layout>
+    <NotificationContextProvider>
+      <Layout>
+        <Head>
+          <title>Next.js Events</title>
+          <meta name="author" content="Prathamesh Mutkure" />
+        </Head>
+        <Component {...pageProps} />
+      </Layout>
+    </NotificationContextProvider>
   );
 }
 

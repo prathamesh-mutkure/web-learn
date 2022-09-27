@@ -43,6 +43,7 @@ const handler = async (req, res) => {
     const { eventId } = req.query;
 
     const newComment = {
+      eventId,
       email,
       name,
       text,
