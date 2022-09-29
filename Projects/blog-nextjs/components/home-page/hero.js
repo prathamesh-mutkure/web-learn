@@ -9,7 +9,7 @@ const Hero = () => {
         <Image src="/images/site/max.png" height={300} width={300} alt="Hero" />
       </div>
 
-      <h1>Hi, I'm Max</h1>
+      <h1>Hi, I&apos;m Max</h1>
 
       <p>
         I blog about Web Development - especially frameworks like React and
