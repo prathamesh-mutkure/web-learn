@@ -9,6 +9,6 @@
   "author": "Prathamesh Mutkure",
   "license": "ISC",
   "dependencies": {
-    "mongoose": "^5.9.7"
+    "mongoose": "^5.13.15"
   }
 }
