@@ -1,7 +1,8 @@
 export const Query = {
   hello: (parent, args, context) => "world",
 
-  products: (parent, { filter }, { products, reviews: allReviews }) => {
+  products: (parent, { filter }, { db }) => {
+    const { products, reviews: allReviews } = db;
     let filteredProducts = products;
 
     if (filter) {
@@ -30,21 +31,21 @@ export const Query = {
     return filteredProducts;
   },
 
-  product: (parent, args, context) => {
-    const { products } = context;
+  product: (parent, args, { db }) => {
+    const { products } = db;
     const { id } = args;
 
     return products.find((product) => product.id === id);
   },
 
-  categories: (parent, args, { categories }) => categories,
-  category: (parent, args, { categories }) => {
+  categories: (parent, args, { db }) => db.categories,
+  category: (parent, args, { db }) => {
     const { id } = args;
 
-    return categories.find((cat) => cat.id === id);
+    return db.categories.find((cat) => cat.id === id);
   },
 
-  reviews: (parent, args, { reviews }) => {
-    return reviews;
+  reviews: (parent, args, { db }) => {
+    return db.reviews;
   },
 };
