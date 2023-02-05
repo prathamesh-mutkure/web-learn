@@ -1,0 +1,27 @@
+{
+  "name": "graphql-social-media",
+  "type": "module",
+  "exports": "./dist/index.js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile": "tsc",
+    "watch": "nodemon --watch './**/*.{ts,graphql}' --exec 'node --experimental-specifier-resolution=node --loader ts-node/esm' src/index.ts",
+    "dev": "tsc-watch --onSuccess \"npm run watch\""
+  },
+  "author": "Prathamesh Mutkure",
+  "license": "ISC",
+  "dependencies": {
+    "@apollo/server": "^4.3.2",
+    "graphql": "^16.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.19",
+    "ts-node": "^10.9.1",
+    "ts-node-dev": "^2.0.0",
+    "tsc-watch": "^6.0.0",
+    "typescript": "^4.9.5"
+  }
+}
