@@ -8,6 +8,8 @@ type Mutation {
     postCreate(post: PostInput!): PostPayload!
     postUpdate(postId: ID!, post: PostInput!): PostPayload!
     postDelete(postId: ID!): PostPayload!
+
+    signup(name: String!, email: String!, password: String!, bio: String): User
 }
 
 type Post {
