@@ -5,8 +5,9 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import { type RouterOutputs, api } from "~/utils/api";
 import dayjs from "dayjs";
 import Image from "next/image";
-import { LoadingPage } from "~/components/app/loading-spinner";
+import LoadingSpinner, { LoadingPage } from "~/components/app/loading-spinner";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 dayjs.extend(relativeTime);
 
@@ -21,6 +22,11 @@ function CreatePostBox() {
     onSuccess: () => {
       setInput("");
       void ctx.post.invalidate();
+    },
+    onError: (e) => {
+      const errorMessage = e.data?.zodError?.fieldErrors.content;
+
+      toast(errorMessage?.[0] ?? "Failed to send post!");
     },
   });
 
@@ -43,14 +49,31 @@ function CreatePostBox() {
         value={input}
         onChange={(e) => setInput(e.target.value)}
         disabled={isPostLoading}
+        onKeyDown={(e) => {
+          if (e.key !== "Enter") return;
+
+          e.preventDefault();
+
+          if (input !== "") {
+            mutate({ content: input });
+          }
+        }}
       />
 
-      <button
-        onClick={() => mutate({ content: input })}
-        disabled={isPostLoading}
-      >
-        POST
-      </button>
+      {input !== "" && !isPostLoading && (
+        <button
+          onClick={() => mutate({ content: input })}
+          disabled={isPostLoading}
+        >
+          POST
+        </button>
+      )}
+
+      {isPostLoading && (
+        <div className="flex items-center">
+          <LoadingSpinner size={30} />
+        </div>
+      )}
     </div>
   );
 }

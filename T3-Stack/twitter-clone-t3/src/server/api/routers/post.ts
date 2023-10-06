@@ -1,11 +1,22 @@
 import { clerkClient } from "@clerk/nextjs/server";
 import { z } from "zod";
 
+import { Ratelimit } from "@upstash/ratelimit";
+import { Redis } from "@upstash/redis";
+
 import {
   createTRPCRouter,
   privateProcedure,
   publicProcedure,
 } from "~/server/api/trpc";
+import { TRPCError } from "@trpc/server";
+
+const ratelimit = new Ratelimit({
+  redis: Redis.fromEnv(),
+  limiter: Ratelimit.slidingWindow(1, "10 m"),
+  analytics: true,
+  prefix: "@upstash/twitter-clone",
+});
 
 export const postRouter = createTRPCRouter({
   getAll: publicProcedure.query(async ({ ctx }) => {
@@ -38,10 +49,19 @@ export const postRouter = createTRPCRouter({
   createPost: privateProcedure
     .input(
       z.object({
-        content: z.string().emoji().min(1).max(20),
+        content: z.string().emoji("You can only post emojis").min(1).max(20),
       }),
     )
     .mutation(async ({ ctx, input }) => {
+      const { success } = await ratelimit.limit(ctx.currentUserId);
+
+      if (!success) {
+        return new TRPCError({
+          code: "TOO_MANY_REQUESTS",
+          message: "Limit exceeded, please try again later!",
+        });
+      }
+
       const post = await ctx.prisma.post.create({
         data: {
           content: input.content,
