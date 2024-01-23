@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Dad Jokes</title>
+
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+
+    <style>
+      body {
+        background: #12c2e9;
+        background: -webkit-linear-gradient(
+          to right,
+          #7f7fd5,
+          #86a8e7,
+          #91eae4
+        );
+        background: linear-gradient(to right, #7f7fd5, #86a8e7, #91eae4);
+
+        width: 400px;
+        height: 500px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 3rem;
+
+        color: white;
+      }
+
+      img {
+        height: 5rem;
+        width: auto;
+      }
+
+      button {
+        background: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        color: black;
+        cursor: pointer;
+        max-width: 70%;
+      }
+
+      button:hover {
+        background: #ffffff90;
+      }
+
+      p {
+        font-size: 1rem;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="/logo.svg" alt="logo" />
+
+    <button type="button" id="getDataButton">Analyse Privacy Policy</button>
+
+    <p id="result"></p>
+
+    <script src="script.js"></script>
+  </body>
+</html>
